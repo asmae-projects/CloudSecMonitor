@@ -82,7 +82,7 @@ CloudSecMonitor/
 - ✅ Tables et relations définies
 - ⏳ Scripts Python en cours
 
-## 📧 Contact
+
 Projet Python et Bases de Données - 4ème année ITIRC  
 Encadrant: M. BOUKSIM
 
