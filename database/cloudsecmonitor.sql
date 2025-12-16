@@ -61,3 +61,89 @@ INSERT INTO regles_alerte (nom_regle, type_anomalie, seuil_declenchement, niveau
 ('Brute Force SSH', 'SSH', 5, 'critique', 'Bloquer IP'),
 ('Port Scan Detection', 'scan_port', 20, 'moyen', 'Alerter admin'),
 ('Accès fichier sensible', 'acces_fichier', 1, 'critique', 'Bloquer et alerter');
+
+
+
+--Créer des procédures stockées
+
+--Procédure 1 : Créer un incident automatiquement
+
+DELIMITER //
+
+CREATE PROCEDURE creer_incident(
+    IN p_id_serveur INT,
+    IN p_id_regle INT,
+    IN p_type_incident VARCHAR(100),
+    IN p_description TEXT,
+    IN p_severite ENUM('faible', 'moyen', 'critique')
+)
+BEGIN
+    INSERT INTO incidents (
+        id_serveur,
+        id_regle,
+        type_incident,
+        description,
+        severite,
+        statut,
+        date_detection
+    ) VALUES (
+        p_id_serveur,
+        p_id_regle,
+        p_type_incident,
+        p_description,
+        p_severite,
+        'nouveau',
+        NOW()
+    );
+END//
+
+DELIMITER ;
+
+--Test de la procédure 
+CALL creer_incident(1, 1, 'Connexion SSH échouée', '10 tentatives depuis 192.168.1.50', 'critique');
+SELECT * FROM incidents ORDER BY id_incident DESC LIMIT 1;
+
+--Procédure 2 : Résoudre un incident
+
+DELIMITER //
+
+CREATE PROCEDURE resoudre_incident(
+    IN p_id_incident INT,
+    IN p_resolu_par VARCHAR(100),
+    IN p_notes TEXT
+)
+BEGIN
+    UPDATE incidents
+    SET 
+        statut = 'resolu',
+        date_resolution = NOW(),
+        resolu_par = p_resolu_par,
+        notes = p_notes
+    WHERE id_incident = p_id_incident;
+END//
+
+DELIMITER ;
+
+--Test 
+CALL resoudre_incident(1, 'Admin Soumaya', 'Incident résolu après blocage IP');
+SELECT * FROM incidents WHERE id_incident = 1;
+
+--Procédure 3 : Obtenir statistiques incidents
+DELIMITER //
+
+CREATE PROCEDURE stats_incidents()
+BEGIN
+    SELECT 
+        severite,
+        statut,
+        COUNT(*) as nombre_incidents
+    FROM incidents
+    GROUP BY severite, statut
+    ORDER BY severite DESC, statut;
+END//
+
+DELIMITER ;
+
+--test
+CALL stats_incidents();
+
