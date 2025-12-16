@@ -35,22 +35,6 @@ Système de surveillance de sécurité pour infrastructure cloud simulée. Colle
 - MySQL 8.0+ (WAMP/XAMPP)
 - Git
 
-### Étapes
-```bash
-# 1. Cloner le repository
-git clone https://github.com/asmae-projects/CloudSecMonitor.git
-cd CloudSecMonitor
-
-# 2. Importer la base de données
-mysql -u root -p < database/cloudsecmonitor.sql
-
-# 3. Installer les dépendances Python (à venir)
-pip install -r requirements.txt
-```
-
-## 🚀 Utilisation
-(En cours de développement)
-
 ## 📊 Fonctionnalités
 
 ### Détection d'Anomalies
@@ -66,15 +50,18 @@ pip install -r requirements.txt
 ## 📁 Structure du Projet
 ```
 CloudSecMonitor/
-├── database/           # Scripts SQL
-├── src/               # Code Python (à venir)
-├── docs/              # Documentation
-└── README.md
+├── config/          # Configuration (paramètres MySQL, constantes)
+├── database/        # Scripts SQL et exports de la base de données
+├── docs/            # Documentation technique et guides
+├── src/             # Code source Python (modules principaux)
+├── tests/           # Tests unitaires
+└── requirements.txt # Dépendances Python
 ```
+> **Note:** Les fichiers `.gitkeep` dans les dossiers vides permettent de conserver la structure des répertoires dans Git, car Git ne track pas les dossiers vides par défaut.
 
 ## 👥 Équipe
-- **Asmae ZIANI** - Base de données et collecte
-- **Soumia BADAOUI** - Analyse et dashboard
+- **Asmae ZIANI** - 
+- **Soumia BADAOUI** - 
 
 ## 📅 Statut
 🚧 **Phase 1 - Conception** (Semaine 1/6)
@@ -88,4 +75,4 @@ Encadrant: M. BOUKSIM
 
 ---
 
-*Dernière mise à jour: Décembre 2024*
+
