@@ -3,8 +3,8 @@ DB_CONFIG = {
     "host": "localhost",
     "user": "root",
     "password": "",  # Pas de mot de passe (connexion locale WAMPet aussi pour phpmyadmin)
-    "database": "cloudsecmonitor",
-    "port": 3306  # Port par défaut MySQL
+    "database": "cloudsecmonitor", 
+    "port": 3306  
 }
 
 # IPs suspectes pour simulation d'attaques
