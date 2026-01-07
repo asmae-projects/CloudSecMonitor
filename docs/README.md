@@ -63,11 +63,6 @@ CloudSecMonitor/
 - **Asmae ZIANI** - 
 - **Soumia BADAOUI** - 
 
-## 📅 Statut
-🚧 **Phase 1 - Conception** (Semaine 1/6)
-- ✅ Schéma de base de données créé
-- ✅ Tables et relations définies
-- ⏳ Scripts Python en cours
 
 
 Projet Python et Bases de Données - 4ème année ITIRC  
