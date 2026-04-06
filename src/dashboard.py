@@ -500,7 +500,7 @@ def get_connection():
             user="root",
             password="",
             database="cloudsecmonitor",
-            port=3306
+            port=3306,
         )
         return connection
     except mysql.connector.Error as err:
